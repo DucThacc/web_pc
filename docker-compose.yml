@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: pc_store_web
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+      - ./public/uploads:/var/www/html/public/uploads
+    environment:
+      - DB_HOST=db
+      - DB_NAME=pc_store
+      - DB_USER=root
+      - DB_PASS=rootpassword
+      - DB_PORT=3306
+      - APP_URL=http://localhost:8080
+      - APP_ENV=development
+    depends_on:
+      - db
+    networks:
+      - pc_store_network
+
+  db:
+    image: mariadb:10.11
+    container_name: pc_store_db
+    ports:
+      - "3307:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=pc_store
+      - MYSQL_USER=pcstore
+      - MYSQL_PASSWORD=pcstorepassword
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+      - ./database/seed.sql:/docker-entrypoint-initdb.d/02-seed.sql
+    networks:
+      - pc_store_network
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: pc_store_phpmyadmin
+    ports:
+      - "8081:80"
+    environment:
+      - PMA_HOST=db
+      - PMA_USER=root
+      - PMA_PASSWORD=rootpassword
+    depends_on:
+      - db
+    networks:
+      - pc_store_network
+
+networks:
+  pc_store_network:
+    driver: bridge
+
+volumes:
+  db_data:
+

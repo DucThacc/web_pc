@@ -1,0 +1,169 @@
+/* Custom Styles for PC Store */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Product Card */
+.product-card {
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.product-card img {
+    height: 200px;
+    object-fit: cover;
+}
+
+.product-price {
+    color: #d32f2f;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.product-price-old {
+    color: #999;
+    text-decoration: line-through;
+    font-size: 0.9em;
+}
+
+/* Banner Slider */
+.banner-slider {
+    position: relative;
+    overflow: hidden;
+    height: 400px;
+    margin-bottom: 2rem;
+}
+
+.banner-slider img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.banner-slide {
+    display: none;
+}
+
+.banner-slide.active {
+    display: block;
+    animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Cart */
+.cart-item {
+    border-bottom: 1px solid #eee;
+    padding: 1rem 0;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+/* Product Detail */
+.product-images {
+    margin-bottom: 2rem;
+}
+
+.product-main-image {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.product-thumbnails {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.product-thumbnail {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 2px solid #ddd;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.product-thumbnail.active {
+    border-color: #007bff;
+}
+
+.product-detail-price {
+    font-size: 2em;
+    color: #d32f2f;
+    font-weight: bold;
+}
+
+/* Reviews */
+.review-item {
+    border-bottom: 1px solid #eee;
+    padding: 1rem 0;
+}
+
+.stars {
+    color: #ffc107;
+}
+
+/* Admin */
+.sidebar {
+    min-height: calc(100vh - 56px);
+    background-color: #f8f9fa;
+}
+
+.sidebar .nav-link {
+    color: #333;
+}
+
+.sidebar .nav-link.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.dashboard-stat {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.dashboard-stat h3 {
+    margin: 0;
+    font-size: 2.5em;
+    color: #007bff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .product-main-image {
+        height: 300px;
+    }
+    
+    .banner-slider {
+        height: 250px;
+    }
+}
+
+/* Loading */
+.loading {
+    text-align: center;
+    padding: 2rem;
+}
+
+/* Alert */
+.alert {
+    margin-top: 1rem;
+}
+
