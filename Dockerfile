@@ -22,11 +22,11 @@ WORKDIR /var/www/html
 # Copy application files
 COPY . /var/www/html/
 
-# Set permissions
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html \
-    && mkdir -p /var/www/html/public/uploads/products \
+# Create upload directories and set permissions
+RUN mkdir -p /var/www/html/public/uploads/products \
     && mkdir -p /var/www/html/public/uploads/banners \
+    && chown -R www-data:www-data /var/www/html \
+    && chmod -R 755 /var/www/html \
     && chown -R www-data:www-data /var/www/html/public/uploads \
     && chmod -R 777 /var/www/html/public/uploads
 
