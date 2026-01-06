@@ -18,7 +18,8 @@ define('APP_ENV', $_ENV['APP_ENV'] ?? getenv('APP_ENV') ?: 'development');
 // Paths
 define('ROOT_PATH', dirname(__DIR__));
 define('PUBLIC_PATH', ROOT_PATH . '/public');
-define('UPLOAD_PATH', PUBLIC_PATH . '/uploads');
+// Upload path - lưu trực tiếp vào /uploads (ngoài public) để dễ truy cập
+define('UPLOAD_PATH', ROOT_PATH . '/uploads');
 
 // Create upload directories if they don't exist (silent failure in Docker if already created)
 // In Docker, these directories are created in Dockerfile, so we suppress errors here

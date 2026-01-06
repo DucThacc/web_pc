@@ -1,6 +1,10 @@
 RewriteEngine On
 RewriteBase /
 
+# Allow direct access to uploads directory
+RewriteCond %{REQUEST_URI} ^/uploads/
+RewriteRule ^ - [L]
+
 # Redirect to index.php if file/directory doesn't exist
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

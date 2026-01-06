@@ -23,12 +23,12 @@ WORKDIR /var/www/html
 COPY . /var/www/html/
 
 # Create upload directories and set permissions
-RUN mkdir -p /var/www/html/public/uploads/products \
-    && mkdir -p /var/www/html/public/uploads/banners \
+RUN mkdir -p /var/www/html/uploads/products \
+    && mkdir -p /var/www/html/uploads/banners \
     && chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html \
-    && chown -R www-data:www-data /var/www/html/public/uploads \
-    && chmod -R 777 /var/www/html/public/uploads
+    && chown -R www-data:www-data /var/www/html/uploads \
+    && chmod -R 777 /var/www/html/uploads
 
 # Apache configuration
 RUN echo '<VirtualHost *:80>\n\
@@ -38,6 +38,12 @@ RUN echo '<VirtualHost *:80>\n\
         AllowOverride All\n\
         Require all granted\n\
     </Directory>\n\
+    <Directory /var/www/html/uploads>\n\
+        Options Indexes FollowSymLinks\n\
+        AllowOverride None\n\
+        Require all granted\n\
+    </Directory>\n\
+    Alias /uploads /var/www/html/uploads\n\
 </VirtualHost>' > /etc/apache2/sites-available/000-default.conf
 
 EXPOSE 80
