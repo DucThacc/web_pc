@@ -192,7 +192,7 @@ $brands = $conn->query("SELECT DISTINCT brand FROM products WHERE brand IS NOT N
                     <div class="col-md-4 mb-4">
                         <div class="card product-card">
                             <a href="/product.php?slug=<?php echo e($product['slug']); ?>">
-                                <img src="/uploads/products/<?php echo e($product['image'] ?: 'no-image.jpg'); ?>" class="card-img-top" alt="<?php echo e($product['name']); ?>">
+                                <img src="<?php echo getImageUrl($product['image'] ?: 'no-image.jpg', 'products'); ?>" class="card-img-top" alt="<?php echo e($product['name']); ?>">
                             </a>
                             <div class="card-body">
                                 <h5 class="card-title">

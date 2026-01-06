@@ -2,7 +2,13 @@
 .env
 .env.local
 
-# Uploads
+# Uploads (moved outside public/)
+uploads/*
+!uploads/.gitkeep
+!uploads/products/.gitkeep
+!uploads/banners/.gitkeep
+
+# Old uploads location (deprecated)
 public/uploads/*
 !public/uploads/.gitkeep
 

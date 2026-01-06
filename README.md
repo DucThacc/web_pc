@@ -62,9 +62,9 @@ APP_ENV=development
 
 #### Bước 4: Tạo thư mục uploads
 ```bash
-mkdir -p public/uploads/products
-mkdir -p public/uploads/banners
-chmod -R 777 public/uploads
+mkdir -p uploads/products
+mkdir -p uploads/banners
+chmod -R 777 uploads
 ```
 
 #### Bước 5: Cấu hình web server
@@ -206,12 +206,14 @@ nano .env
 # Set permissions
 sudo chown -R www-data:www-data /var/www/html
 sudo chmod -R 755 /var/www/html
-sudo mkdir -p public/uploads/products public/uploads/banners
-sudo chmod -R 777 public/uploads
+sudo mkdir -p uploads/products uploads/banners
+sudo chmod -R 777 uploads
 
 # Restart Apache
 sudo systemctl restart apache2
 ```
+
+**📖 Xem hướng dẫn chi tiết:** [DEPLOY_UBUNTU.md](DEPLOY_UBUNTU.md)
 
 ---
 
@@ -292,8 +294,8 @@ nano .env
 # Set permissions
 sudo chown -R www-data:www-data /var/www/html
 sudo chmod -R 755 /var/www/html
-sudo mkdir -p public/uploads/products public/uploads/banners
-sudo chmod -R 777 public/uploads
+sudo mkdir -p uploads/products uploads/banners
+sudo chmod -R 777 uploads
 
 # Cấu hình Apache
 sudo nano /etc/apache2/sites-available/000-default.conf
@@ -339,12 +341,12 @@ pc-store/
 │   │   │   └── style.css
 │   │   └── js/
 │   │       └── main.js
-│   ├── api/
-│   │   ├── cart.php
-│   │   └── review.php
-│   └── uploads/          # Uploaded files
-│       ├── products/
-│       └── banners/
+│   └── api/
+│       ├── cart.php
+│       └── review.php
+├── uploads/              # Uploaded files (tách ra ngoài public)
+│   ├── products/
+│   └── banners/
 ├── .env.example          # File cấu hình mẫu
 ├── .htaccess             # Apache rewrite rules
 ├── Dockerfile            # Docker image
@@ -386,10 +388,12 @@ pc-store/
 ## 📝 Ghi chú
 
 - File `.env` chứa thông tin nhạy cảm, không commit vào Git
-- Thư mục `public/uploads` cần quyền ghi (chmod 777)
+- Thư mục `uploads` cần quyền ghi (chmod 777) - **ĐÃ TÁCH RA NGOÀI public/**
 - Trên production, nên tắt `display_errors` trong PHP
 - Khuyến nghị sử dụng HTTPS trên production
 - Nên backup database thường xuyên
+- **Cache busting tự động:** Ảnh có timestamp để tránh cache browser
+- **Xem hướng dẫn deploy:** [DEPLOY_UBUNTU.md](DEPLOY_UBUNTU.md)
 
 ## 🐛 Troubleshooting
 
@@ -399,8 +403,10 @@ pc-store/
 - Kiểm tra firewall/security group
 
 **Lỗi upload ảnh:**
-- Kiểm tra quyền thư mục `public/uploads`
+- Kiểm tra quyền thư mục `uploads` (cần 777)
 - Kiểm tra `upload_max_filesize` và `post_max_size` trong php.ini
+- Xóa cache browser (Ctrl+Shift+R) nếu ảnh cũ vẫn hiển thị
+- Xem chi tiết: [DEPLOY_UBUNTU.md](DEPLOY_UBUNTU.md)
 
 **Lỗi 404:**
 - Kiểm tra mod_rewrite đã được bật

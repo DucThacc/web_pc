@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <tr class="cart-item">
                             <td>
                                 <div class="d-flex">
-                                    <img src="/uploads/products/<?php echo e($item['product']['image'] ?: 'no-image.jpg'); ?>" 
+                                    <img src="<?php echo getImageUrl($item['product']['image'] ?: 'no-image.jpg', 'products'); ?>" 
                                          alt="<?php echo e($item['product']['name']); ?>" 
                                          style="width: 80px; height: 80px; object-fit: cover;">
                                     <div class="ms-3">

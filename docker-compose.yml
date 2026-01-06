@@ -8,7 +8,6 @@ services:
       - "8080:80"
     volumes:
       - .:/var/www/html
-      - uploads_data:/var/www/html/uploads
     environment:
       - DB_HOST=db
       - DB_NAME=pc_store
@@ -59,5 +58,4 @@ networks:
 
 volumes:
   db_data:
-  uploads_data:
 

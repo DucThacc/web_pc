@@ -69,7 +69,7 @@ $relatedProducts = $conn->query("SELECT p.*,
                 $imagesArray = $images->fetch_all(MYSQLI_ASSOC);
                 $primaryImage = !empty($imagesArray) ? $imagesArray[0]['image_path'] : 'no-image.jpg';
                 ?>
-                <img src="/uploads/products/<?php echo e($primaryImage); ?>" class="product-main-image" id="mainImage" alt="<?php echo e($product['name']); ?>">
+                <img src="<?php echo getImageUrl($primaryImage, 'products'); ?>" class="product-main-image" id="mainImage" alt="<?php echo e($product['name']); ?>">
                 
                 <?php if (count($imagesArray) > 1): ?>
                 <div class="product-thumbnails">
@@ -234,7 +234,7 @@ $relatedProducts = $conn->query("SELECT p.*,
                 <div class="col-md-3 mb-4">
                     <div class="card product-card">
                         <a href="/product.php?slug=<?php echo e($related['slug']); ?>">
-                            <img src="/uploads/products/<?php echo e($related['image'] ?: 'no-image.jpg'); ?>" class="card-img-top" alt="<?php echo e($related['name']); ?>">
+                            <img src="<?php echo getImageUrl($related['image'] ?: 'no-image.jpg', 'products'); ?>" class="card-img-top" alt="<?php echo e($related['name']); ?>">
                         </a>
                         <div class="card-body">
                             <h5 class="card-title">

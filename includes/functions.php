@@ -150,3 +150,24 @@ function generatePagination($currentPage, $totalPages, $baseUrl) {
     return $html;
 }
 
+/**
+ * Get image URL with cache busting
+ * Thêm timestamp của file để tránh browser cache khi cập nhật ảnh
+ */
+function getImageUrl($filename, $directory = 'products') {
+    if (empty($filename)) {
+        return '/uploads/' . $directory . '/no-image.jpg';
+    }
+    
+    $filePath = UPLOAD_PATH . '/' . $directory . '/' . $filename;
+    
+    // Nếu file tồn tại, thêm timestamp để cache busting
+    if (file_exists($filePath)) {
+        $timestamp = filemtime($filePath);
+        return '/uploads/' . $directory . '/' . $filename . '?v=' . $timestamp;
+    }
+    
+    // Nếu không tồn tại, trả về URL bình thường
+    return '/uploads/' . $directory . '/' . $filename;
+}
+

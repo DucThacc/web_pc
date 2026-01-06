@@ -52,7 +52,7 @@ $bestSellingProducts = $conn->query("
         <?php if ($banner['link']): ?>
         <a href="<?php echo e($banner['link']); ?>">
         <?php endif; ?>
-            <img src="/uploads/banners/<?php echo e($banner['image_path']); ?>" alt="<?php echo e($banner['title']); ?>">
+            <img src="<?php echo getImageUrl($banner['image_path'], 'banners'); ?>" alt="<?php echo e($banner['title']); ?>">
         <?php if ($banner['link']): ?>
         </a>
         <?php endif; ?>
@@ -73,7 +73,7 @@ $bestSellingProducts = $conn->query("
             <div class="col-md-3 mb-4">
                 <div class="card product-card">
                     <a href="/product.php?slug=<?php echo e($product['slug']); ?>">
-                        <img src="/uploads/products/<?php echo e($product['image'] ?: 'no-image.jpg'); ?>" class="card-img-top" alt="<?php echo e($product['name']); ?>">
+                        <img src="<?php echo getImageUrl($product['image'] ?: 'no-image.jpg', 'products'); ?>" class="card-img-top" alt="<?php echo e($product['name']); ?>">
                     </a>
                     <div class="card-body">
                         <h5 class="card-title">
@@ -107,7 +107,7 @@ $bestSellingProducts = $conn->query("
             <div class="col-md-3 mb-4">
                 <div class="card product-card">
                     <a href="/product.php?slug=<?php echo e($product['slug']); ?>">
-                        <img src="/uploads/products/<?php echo e($product['image'] ?: 'no-image.jpg'); ?>" class="card-img-top" alt="<?php echo e($product['name']); ?>">
+                        <img src="<?php echo getImageUrl($product['image'] ?: 'no-image.jpg', 'products'); ?>" class="card-img-top" alt="<?php echo e($product['name']); ?>">
                     </a>
                     <div class="card-body">
                         <h5 class="card-title">
@@ -141,7 +141,7 @@ $bestSellingProducts = $conn->query("
             <div class="col-md-3 mb-4">
                 <div class="card product-card">
                     <a href="/product.php?slug=<?php echo e($product['slug']); ?>">
-                        <img src="/uploads/products/<?php echo e($product['image'] ?: 'no-image.jpg'); ?>" class="card-img-top" alt="<?php echo e($product['name']); ?>">
+                        <img src="<?php echo getImageUrl($product['image'] ?: 'no-image.jpg', 'products'); ?>" class="card-img-top" alt="<?php echo e($product['name']); ?>">
                     </a>
                     <div class="card-body">
                         <h5 class="card-title">
